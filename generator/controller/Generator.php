@@ -14,6 +14,11 @@ class Generator
     private $allowed_characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     private $output_discount_codes_array = [];
 
+    public function download_generated_discount_codes($how_many, $length, $percentage_of_fill = 70, $custom_characters = null)
+    {
+        $codes_array = $this->generate_discount_codes(generate_discount_codes($how_many, $length, $percentage_of_fill, $custom_characters));
+    }
+
     public function generate_discount_codes($how_many, $length, $percentage_of_fill = 70, $custom_characters = null)
     {
         $percentage_of_fill = $percentage_of_fill / 100.0;
