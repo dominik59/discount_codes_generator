@@ -1,0 +1,19 @@
+{
+    "name": "vagrant/vagrant",
+    "autoload": {
+        "psr-4": {
+            "": "",
+            "Controller\\": "generator/controller/",
+            "Model\\": "generator/model/",
+            "View\\": "generator/view/",
+            "Modules\\": "generator/modules/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Dominik Pawlik",
+            "email": "osemka59@gmail.com"
+        }
+    ],
+    "require": {}
+}
