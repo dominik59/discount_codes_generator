@@ -18,8 +18,21 @@ if ( php_sapi_name() == 'cli' ) {
 		"file:",     // Required value
 		"percentage_of_fill::",    // Optional value
 		"custom_characters::",    // Optional value
+		"help"
 	);
 	$options  = getopt( $shortopts, $longopts );
+
+	if ( isset( $options['help'] ) ) {
+		print_r( "Opcje które można zastosować to:
+		--numberOfCodes liczba
+		--lenghtOfCode liczba
+		--file ścieżka
+		--percentage_of_fill=\"liczba <1-99>\"
+		--custom_characters\"ciąg znaków\"
+		--help" );
+
+		return 0;
+	}
 
 	if ( isset( $options['numberOfCodes'] ) && is_numeric( $options['numberOfCodes'] ) && $options['numberOfCodes'] !== '' ) {
 		$how_many = (int) $options['numberOfCodes'];
