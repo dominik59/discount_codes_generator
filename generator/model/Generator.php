@@ -15,6 +15,12 @@ class Generator
 	private $extension = '.csv';
     private $path = __DIR__ . '/../';
 
+    /**
+     * Funkcja przeznaczona do zapisania danych w formie pliku csv
+     * @param array $array tablica z danymi
+     * @param null $custom_file_path ścieżka ustawiona przez użytkownika
+     * @return null|string ścieżka do zapisanego pliku
+     */
 	public function save_array_to_csv_file( array $array, $custom_file_path = null )
     {
 	    if ( $custom_file_path !== null ) {
@@ -31,6 +37,12 @@ class Generator
 	    return $absolute_path;
     }
 
+    /**
+     * Funkcja przeznaczona do zapisu pliku z danymi w formie txt
+     * @param array $array tablica z danymi
+     * @param null $custom_file_path ścieżka ustawiona przez użytkownika
+     * @return null|string ścieżka do zapisanego pliku
+     */
 	public function save_array_to_txt_file( array $array, $custom_file_path = null ) {
 		$this->extension = '.txt';
 		if ( $custom_file_path !== null ) {
@@ -48,6 +60,11 @@ class Generator
 		return $absolute_path;
 	}
 
+    /**
+     * Funkcja do zapisywania
+     * @param string $string
+     * @return string
+     */
     public function save_string_to_txt_file(string $string)
     {
 	    $absolute_path = $this->path . $this->filename;

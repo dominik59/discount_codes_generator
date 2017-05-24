@@ -8,18 +8,23 @@
 require_once '../vendor/autoload.php';
 set_time_limit( 30000 );
 $generator = new \Controller\Generator();
-
+/**
+ * wykonanie w przypadku uruchomienia z CL
+ */
 if ( php_sapi_name() == 'cli' ) {
 	$shortopts = "";
 
 	$longopts = array(
-		"numberOfCodes:",     // Required value
-		"lenghtOfCode:",     // Required value
-		"file:",     // Required value
-		"percentage_of_fill::",    // Optional value
-		"custom_characters::",    // Optional value
+		"numberOfCodes:",
+		"lenghtOfCode:",
+		"file:",
+		"percentage_of_fill::",
+		"custom_characters::",
 		"help"
 	);
+    /**
+     * Pobranie opcji z CL
+     */
 	$options  = getopt( $shortopts, $longopts );
 
 	if ( isset( $options['help'] ) ) {
