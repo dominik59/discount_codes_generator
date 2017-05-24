@@ -53,7 +53,7 @@ class Generator
 		$view->render( 'page' );
 	}
 
-	public function download_generated_discount_codes( $how_many, $length, $percentage_of_fill = 70, $custom_characters = null ) {
+	public function download_generated_discount_codes( $how_many, $length, $percentage_of_fill = 70, $custom_characters = null, $file_path = null ) {
 //		$data             = $encryptor_object->encrypt( 'moje/bardzo/wazne/dane.csv' );
 //		$data             = $encryptor_object->decrypt( $data );
 		if ( php_sapi_name() != 'cli' ) {
@@ -61,12 +61,21 @@ class Generator
 			if ( ! is_array( $codes_array ) ) {
 				$this->parse_error_page( $codes_array );
 			} else {
-				$file_path = $this->generator_model->save_array_to_csv_file( $codes_array );
+//				$file_path = $this->generator_model->save_array_to_csv_file( $codes_array );
+				$file_path           = $this->generator_model->save_array_to_txt_file( $codes_array );
 				$encryptor_object = new Encryptor();
 				$encrypted_file_path = $encryptor_object->encrypt( $file_path );
 //				$this->generator_model->download_file( $file_path );
 				$this->parse_encrypted_download_page( $encrypted_file_path );
 			}
+		} else {
+			$codes_array = $this->generate_discount_codes( $how_many, $length, $percentage_of_fill, $custom_characters );
+			if ( ! is_array( $codes_array ) ) {
+				return $codes_array;
+			}
+			$this->generator_model->save_array_to_txt_file( $codes_array, $file_path );
+
+			return 'Zapisano';
 		}
 	}
 
