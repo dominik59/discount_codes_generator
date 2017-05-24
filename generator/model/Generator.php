@@ -16,17 +16,31 @@ class Generator
 
     public function save_array_to_csv_file(array $array)
     {
-        $out = fopen($this->path . $this->filename, 'w');
+	    $absolute_path = $this->path . $this->filename;
+	    $out           = fopen( $absolute_path, 'w' );
         foreach ($array as $element) {
             fputcsv($out, array($element));
         }
         fclose($out);
+
+	    return $absolute_path;
     }
 
     public function save_string_to_csv_file(string $string)
     {
-        $out = fopen($this->path . $this->filename, 'w');
+	    $absolute_path = $this->path . $this->filename;
+	    $out           = fopen( $absolute_path, 'w' );
         fputcsv($out, array($string));
         fclose($out);
+
+	    return $absolute_path;
     }
+
+	public function download_file( $file_path ) {
+		$file_url = $file_path;
+		header( 'Content-Type: application/octet-stream' );
+		header( "Content-Transfer-Encoding: Binary" );
+		header( "Content-disposition: attachment; filename=\"" . basename( $file_url ) . "\"" );
+		readfile( $file_url );
+	}
 }

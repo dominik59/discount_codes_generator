@@ -5,7 +5,8 @@ namespace Modules;
  * This Class was inspired by the simple XTemplate (www.phpxtemplate.org)
  * 
  * Cache Manager has been implemented to enable caching of parsed templates
- * 
+ *
+ * https://github.com/webplumbr/php-view-parser
  */
 
 class Parser

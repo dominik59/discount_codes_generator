@@ -88,3 +88,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/vagrant,windows,phpstorm
+.idea/vcs.xml
+.idea/php.xml
+generator/codes.csv

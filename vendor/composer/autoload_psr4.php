@@ -10,5 +10,6 @@ return array(
     'Modules\\' => array($baseDir . '/generator/modules'),
     'Model\\' => array($baseDir . '/generator/model'),
     'Controller\\' => array($baseDir . '/generator/controller'),
+    'Cache\\' => array($baseDir . '/generator/modules/Cache'),
     '' => array($baseDir . '/'),
 );

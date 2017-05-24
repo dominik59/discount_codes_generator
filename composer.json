@@ -6,7 +6,8 @@
             "Controller\\": "generator/controller/",
             "Model\\": "generator/model/",
             "View\\": "generator/view/",
-            "Modules\\": "generator/modules/"
+            "Modules\\": "generator/modules/",
+            "Cache\\": "generator/modules/Cache/"
         }
     },
     "authors": [

@@ -19,6 +19,7 @@ class ComposerStaticInit8e541fab05bad6f1af69105f66500340
         'C' => 
         array (
             'Controller\\' => 11,
+            'Cache\\' => 6,
         ),
     );
 
@@ -38,6 +39,10 @@ class ComposerStaticInit8e541fab05bad6f1af69105f66500340
         'Controller\\' => 
         array (
             0 => __DIR__ . '/../..' . '/generator/controller',
+        ),
+        'Cache\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/generator/modules/Cache',
         ),
     );
 

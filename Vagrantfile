@@ -12,13 +12,13 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "package.box"
+  config.vm.box = "debian/contrib-jessie64"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
   # config.vm.box_check_update = false
-  config.vm.network :forwarded_port, guest: 80, host: 8081.to_i
+  config.vm.network :forwarded_port, guest: 80, host: 8082.to_i
 
  #  config.vm.network :forwarded_port, guest: 27017, host: 27017.to_i
   config.vm.synced_folder ".", "/vagrant",  :mount_options => ["dmode=777,fmode=777"], type:"virtualbox"

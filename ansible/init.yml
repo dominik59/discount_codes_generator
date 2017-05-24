@@ -1,0 +1,67 @@
+---
+- hosts: all
+
+  tasks:
+
+    - name: Install packages
+      apt: name={{ item }} state=present force=yes update_cache=yes
+      with_items:
+        - apt-transport-https
+        - build-essential
+        - curl
+        - npm
+        - zip
+        - vim
+        - atop
+        - htop
+        - ufw
+        - git
+        - git-core
+
+    - name: Add php repository1
+      apt_repository: repo='deb http://packages.dotdeb.org jessie all' state=present
+
+    - name: Add php repository2
+      apt_repository: repo='deb-src http://packages.dotdeb.org jessie all' state=present
+
+
+    - name: Install PHP packages
+      apt: name={{ item }} state=present force=yes update_cache=yes
+      with_items:
+        - php7.0-fpm
+        - php7.0-mysql
+        - php7.0-sqlite3
+        - php7.0-bz2
+        - php7.0-gd
+        - php7.0-imagick
+        - php7.0-xml
+        - php7.0-curl
+        - php7.0-mbstring
+        - php7.0-apcu
+        - php7.0-bcmath
+        - php7.0-xdebug
+
+    - name: Install Nginx
+      apt: pkg=nginx force=yes state=present update_cache=yes
+
+    - name: Install mysql packages
+      apt: name={{ item }} state=present force=yes update_cache=yes
+      with_items:
+        - mysql-server
+        - mysql-client
+
+    - name: Copy nginx agrokalk config file
+      copy:
+        src: templates/freshmail.conf
+        dest: /etc/nginx/conf.d/freshmail.conf
+
+    - name: Copy php xdebug config file
+      copy:
+        src: templates/20-xdebug.ini
+        dest: /etc/php/7.0/cli/conf.d/20-xdebug.ini
+
+    - name: Restart PHP
+      service: name=php7.0-fpm state=restarted
+
+    - name: Restart nginx
+      service: name=nginx state=restarted
