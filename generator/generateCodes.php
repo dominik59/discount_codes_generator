@@ -29,7 +29,8 @@ if ( php_sapi_name() == 'cli' ) {
 		--file ścieżka
 		--percentage_of_fill=\"liczba <1-99>\"
 		--custom_characters\"ciąg znaków\"
-		--help" );
+		--help
+		" );
 
 		return 0;
 	}
@@ -37,14 +38,14 @@ if ( php_sapi_name() == 'cli' ) {
 	if ( isset( $options['numberOfCodes'] ) && is_numeric( $options['numberOfCodes'] ) && $options['numberOfCodes'] !== '' ) {
 		$how_many = (int) $options['numberOfCodes'];
 	} else {
-		var_dump( 'Brak sprecyzowanej ilości kodów lub podany ciąg nie jest w formacie numerycznym' );
+		print_r( "Brak sprecyzowanej ilości kodów lub podany ciąg nie jest w formacie numerycznym\n" );
 
 		return - 1;
 	}
 	if ( isset( $options['lenghtOfCode'] ) && is_numeric( $options['lenghtOfCode'] ) && $options['lenghtOfCode'] !== '' ) {
 		$length = (int) $options['lenghtOfCode'];
 	} else {
-		var_dump( 'Brak sprecyzowanej długości kodu lub podany ciąg nie jest w formacie numerycznym' );
+		print_r( "Brak sprecyzowanej długości kodu lub podany ciąg nie jest w formacie numerycznym" );
 
 		return - 1;
 	}
@@ -52,7 +53,7 @@ if ( php_sapi_name() == 'cli' ) {
 		if ( is_numeric( $options['percentage_of_fill'] ) && ( (int) $options['percentage_of_fill'] ) >= 1 && ( (int) $options['percentage_of_fill'] ) <= 99 ) {
 			$percentage_of_fill = (int) $options['percentage_of_fill'];
 		} else {
-			var_dump( 'Podany procent wypełnienia nie jest w formacie numerycznym' );
+			print_r( "Podany procent wypełnienia nie jest w formacie numerycznym\n" );
 
 			return - 1;
 		}
