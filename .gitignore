@@ -91,3 +91,4 @@ $RECYCLE.BIN/
 .idea/vcs.xml
 .idea/php.xml
 generator/codes.csv
+/generator/codes.txt
