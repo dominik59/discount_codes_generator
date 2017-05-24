@@ -14,9 +14,13 @@ class Generator
     private $filename = 'codes.csv';
     private $path = __DIR__ . '/../';
 
-    public function save_array_to_csv_file(array $array)
+	public function save_array_to_csv_file( array $array, $custom_file_path = null )
     {
-	    $absolute_path = $this->path . $this->filename;
+	    if ( $custom_file_path !== null ) {
+		    $absolute_path = $custom_file_path;
+	    } else {
+		    $absolute_path = $this->path . $this->filename;
+	    }
 	    $out           = fopen( $absolute_path, 'w' );
         foreach ($array as $element) {
             fputcsv($out, array($element));

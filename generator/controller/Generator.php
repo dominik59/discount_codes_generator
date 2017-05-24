@@ -9,6 +9,7 @@
 namespace Controller;
 
 
+use Modules\Encryptor;
 use Modules\Parser;
 
 class Generator
@@ -30,6 +31,20 @@ class Generator
 
 	}
 
+	public function download_encrypted_file( $encrypted_file ) {
+		$encryptor_object    = new Encryptor();
+		$decrypted_file_path = $encryptor_object->decrypt( $encrypted_file );
+		$this->generator_model->download_file( $decrypted_file_path );
+	}
+
+	public function parse_encrypted_download_page( $encrypted_file_path ) {
+		$view       = new Parser( __DIR__ . '/../view/download.html' );
+		$view->LINK = '?file=' . $encrypted_file_path;
+
+		$view->parse( 'page' );
+		$view->render( 'page' );
+	}
+
 	public function parse_error_page( $error_message ) {
 		$view       = new Parser( __DIR__ . '/../view/error.html' );
 		$view->BLAD = $error_message;
@@ -39,15 +54,18 @@ class Generator
 	}
 
 	public function download_generated_discount_codes( $how_many, $length, $percentage_of_fill = 70, $custom_characters = null ) {
-
+//		$data             = $encryptor_object->encrypt( 'moje/bardzo/wazne/dane.csv' );
+//		$data             = $encryptor_object->decrypt( $data );
 		if ( php_sapi_name() != 'cli' ) {
 			$codes_array = $this->generate_discount_codes( $how_many, $length, $percentage_of_fill, $custom_characters );
 			if ( ! is_array( $codes_array ) ) {
 				$this->parse_error_page( $codes_array );
 			} else {
 				$file_path = $this->generator_model->save_array_to_csv_file( $codes_array );
-				$this->generator_model->download_file( $file_path );
-				http_redirect( '/' );
+				$encryptor_object = new Encryptor();
+				$encrypted_file_path = $encryptor_object->encrypt( $file_path );
+//				$this->generator_model->download_file( $file_path );
+				$this->parse_encrypted_download_page( $encrypted_file_path );
 			}
 		}
 	}

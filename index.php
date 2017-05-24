@@ -45,6 +45,8 @@ if ( is_array( $_POST ) && count( $_POST ) > 0 ) {
 	$generator->download_generated_discount_codes( $how_many, $length, $percentage_of_fill, $custom_characters );
 	//print_r( json_encode( $generator->download_generated_discount_codes( $how_many, $length, $percentage_of_fill, $custom_characters ) ) );
 
+} elseif ( isset( $_GET['file'] ) ) {
+	$generator->download_encrypted_file( $_GET['file'] );
 } else {
 	$generator->parse_page_to_generate_codes();
 }
