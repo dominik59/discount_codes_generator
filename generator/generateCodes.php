@@ -58,7 +58,7 @@ if ( php_sapi_name() == 'cli' ) {
 		if ( is_numeric( $options['percentage_of_fill'] ) && ( (int) $options['percentage_of_fill'] ) >= 1 && ( (int) $options['percentage_of_fill'] ) <= 99 ) {
 			$percentage_of_fill = (int) $options['percentage_of_fill'];
 		} else {
-			print_r( "Podany procent wypełnienia nie jest w formacie numerycznym\n" );
+			print_r( "Podany procent wypełnienia nie jest w formacie numerycznym lub nie mieści się w zadeklarowanym przedziale\n" );
 
 			return - 1;
 		}

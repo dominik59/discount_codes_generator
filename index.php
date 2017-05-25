@@ -29,7 +29,7 @@ if ( is_array( $_POST ) && count( $_POST ) > 0 ) {
 		if ( is_numeric( $_POST['percentage_of_fill'] ) && ( (int) $_POST['percentage_of_fill'] ) >= 1 && ( (int) $_POST['percentage_of_fill'] ) <= 99 ) {
 			$percentage_of_fill = (int) $_POST['percentage_of_fill'];
 		} else {
-			$generator->parse_error_page( 'Podany procent wypełnienia nie jest w formacie numerycznym' );
+			$generator->parse_error_page( 'Podany procent wypełnienia nie jest w formacie numerycznym lub nie mieści się w zadeklarowanym przedziale' );
 
 			return - 1;
 		}
