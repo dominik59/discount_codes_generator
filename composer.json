@@ -1,20 +1,20 @@
 {
-    "name": "vagrant/vagrant",
-    "autoload": {
-        "psr-4": {
-            "": "",
-            "Controller\\": "generator/controller/",
-            "Model\\": "generator/model/",
-            "View\\": "generator/view/",
-            "Modules\\": "generator/modules/",
-            "Cache\\": "generator/modules/Cache/"
-        }
-    },
-    "authors": [
-        {
-            "name": "Dominik Pawlik",
-            "email": "osemka59@gmail.com"
-        }
-    ],
-    "require": {}
+  "name": "vagrant/vagrant",
+  "autoload": {
+    "psr-4": {
+      "": "",
+      "Controller\\": "generator/controller/",
+      "Model\\": "generator/model/",
+      "View\\": "generator/view/",
+      "Modules\\": "generator/modules/",
+      "Cache\\": "generator/modules/Cache/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Dominik Pawlik",
+      "email": "osemka59@gmail.com"
+    }
+  ],
+  "require": {}
 }

@@ -19,7 +19,10 @@ class ComposerAutoloaderInit8e541fab05bad6f1af69105f66500340
             return self::$loader;
         }
 
-        spl_autoload_register(array('ComposerAutoloaderInit8e541fab05bad6f1af69105f66500340', 'loadClassLoader'), true, true);
+        spl_autoload_register(array(
+            'ComposerAutoloaderInit8e541fab05bad6f1af69105f66500340',
+            'loadClassLoader'
+        ), true, true);
         self::$loader = $loader = new \Composer\Autoload\ClassLoader();
         spl_autoload_unregister(array('ComposerAutoloaderInit8e541fab05bad6f1af69105f66500340', 'loadClassLoader'));
 

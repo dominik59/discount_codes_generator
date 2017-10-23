@@ -9,8 +9,9 @@
 namespace Modules;
 
 
-class Encryptor {
-	private $private_key = '-----BEGIN RSA PRIVATE KEY-----
+class Encryptor
+{
+    private $private_key = '-----BEGIN RSA PRIVATE KEY-----
 MIIEogIBAAKCAQBeOSwwG9LRe2SrWUW+EEG/+bkm1UWIPV9gPoiKblzI5O8eH00q
 NyycgIpiA8KwLq54XrGwwoTKFTRKgT8eHURXJjPad4NnkTEiPptAd9TO+cX0ulzS
 nYIpbQWu82TK1Piu0BN03lIOi3cLHbEB2eCJKYqqKIwk1GD7UUVd7kkA8BkztnZI
@@ -37,7 +38,7 @@ s91FAoGAbiHw7qPphKX2uUR/xO+Mq7d90Av33H6p5sauS/bH4SjLmMeyQbTPpLfk
 tyV6V/lpeZbTwD1OWtLa4NMH/OtQqZCa5ie88yo58OfZJe9PTLwXzrKoFvefu3Pn
 Hj2D2gL++MQhRMwn6EBu/oTM2LiPnOPEv1zIzsJTtipdWY9Md6U=
 -----END RSA PRIVATE KEY-----';
-	private $public_key = '-----BEGIN PUBLIC KEY-----
+    private $public_key = '-----BEGIN PUBLIC KEY-----
 MIIBITANBgkqhkiG9w0BAQEFAAOCAQ4AMIIBCQKCAQBeOSwwG9LRe2SrWUW+EEG/
 +bkm1UWIPV9gPoiKblzI5O8eH00qNyycgIpiA8KwLq54XrGwwoTKFTRKgT8eHURX
 JjPad4NnkTEiPptAd9TO+cX0ulzSnYIpbQWu82TK1Piu0BN03lIOi3cLHbEB2eCJ
@@ -47,31 +48,35 @@ Ml5oKVbaMo3f37d0zqs3vSND/gYFaDMyOLqqhhfh/o1a/sjn9zjEBfu6RVSMnMA3
 AgMBAAE=
 -----END PUBLIC KEY-----';
 
-	public function encrypt( $string ) {
-		if ( openssl_public_encrypt( $string, $encrypted, $this->public_key ) ) {
-			$data = $this->base64_url_encode( $encrypted );
-		} else {
-			throw new \Exception( 'Nie można zaszyfrować danych. Prawdopodobnie klucz publiczny jest zbyt krótki' );
-		}
+    public function encrypt($string)
+    {
+        if (openssl_public_encrypt($string, $encrypted, $this->public_key)) {
+            $data = $this->base64_url_encode($encrypted);
+        } else {
+            throw new \Exception('Nie można zaszyfrować danych. Prawdopodobnie klucz publiczny jest zbyt krótki');
+        }
 
-		return $data;
-	}
+        return $data;
+    }
 
-	public function decrypt( $string ) {
-		if ( openssl_private_decrypt( $this->base64_url_decode( $string ), $decrypted, $this->private_key ) ) {
-			$data = $decrypted;
-		} else {
-			throw new \Exception( 'Nie można zdeszyfrować danych. Prawdopodobnie dane są uszkodzone' );
-		}
+    public function decrypt($string)
+    {
+        if (openssl_private_decrypt($this->base64_url_decode($string), $decrypted, $this->private_key)) {
+            $data = $decrypted;
+        } else {
+            throw new \Exception('Nie można zdeszyfrować danych. Prawdopodobnie dane są uszkodzone');
+        }
 
-		return $data;
-	}
+        return $data;
+    }
 
-	function base64_url_encode($input) {
-		return strtr(base64_encode($input), '+/=', '-_,');
-	}
+    function base64_url_encode($input)
+    {
+        return strtr(base64_encode($input), '+/=', '-_,');
+    }
 
-	function base64_url_decode($input) {
-		return base64_decode(strtr($input, '-_,', '+/='));
-	}
+    function base64_url_decode($input)
+    {
+        return base64_decode(strtr($input, '-_,', '+/='));
+    }
 }
