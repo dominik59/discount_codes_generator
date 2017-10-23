@@ -17,7 +17,7 @@ class Generator
 
     public function __construct()
     {
-        $this->path = sys_get_temp_dir();
+//        $this->path = sys_get_temp_dir();
     }
 
     /**
